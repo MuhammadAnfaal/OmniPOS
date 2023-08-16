@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_16_193555) do
+ActiveRecord::Schema.define(version: 2023_08_16_193956) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "name"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 2023_08_16_193555) do
     t.index ["vendor_id"], name: "index_purchase_orders_on_vendor_id"
   end
 
+  create_table "purchase_orders_products", force: :cascade do |t|
+    t.integer "product_quantity"
+    t.float "product_price"
+    t.integer "purchase_orders_id", null: false
+    t.integer "products_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["products_id"], name: "index_purchase_orders_products_on_products_id"
+    t.index ["purchase_orders_id"], name: "index_purchase_orders_products_on_purchase_orders_id"
+  end
+
   create_table "sub_catagories", force: :cascade do |t|
     t.string "type_name"
     t.integer "catagory_id", null: false
@@ -95,6 +106,8 @@ ActiveRecord::Schema.define(version: 2023_08_16_193555) do
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style1_id"
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style2_id"
   add_foreign_key "purchase_orders", "vendors"
+  add_foreign_key "purchase_orders_products", "products", column: "products_id"
+  add_foreign_key "purchase_orders_products", "purchase_orders", column: "purchase_orders_id"
   add_foreign_key "sub_catagories", "catagories"
   add_foreign_key "variation_styles", "variation_types"
   add_foreign_key "variation_types", "sub_catagories"
