@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_16_192348) do
+ActiveRecord::Schema.define(version: 2023_08_16_193035) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 2023_08_16_192348) do
     t.index ["product_id"], name: "index_product_variation_counts_on_product_id"
     t.index ["variation_style1_id"], name: "index_product_variation_counts_on_variation_style1_id"
     t.index ["variation_style2_id"], name: "index_product_variation_counts_on_variation_style2_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "quantity_in_stock"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "purchase_orders", force: :cascade do |t|
