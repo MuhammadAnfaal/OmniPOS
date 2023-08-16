@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2023_08_16_181944) do
   end
 
   create_table "sub_catagories", force: :cascade do |t|
+    t.string "type_name"
     t.integer "catagory_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
