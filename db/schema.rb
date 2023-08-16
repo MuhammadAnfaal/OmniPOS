@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_16_193035) do
+ActiveRecord::Schema.define(version: 2023_08_16_193555) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_prices", force: :cascade do |t|
+    t.float "price"
+    t.datetime "date"
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_prices_on_product_id"
   end
 
   create_table "product_variation_counts", force: :cascade do |t|
@@ -81,6 +90,7 @@ ActiveRecord::Schema.define(version: 2023_08_16_193035) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "product_prices", "products"
   add_foreign_key "product_variation_counts", "products"
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style1_id"
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style2_id"
