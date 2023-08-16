@@ -1,2 +1,0 @@
-class ProductPrice < ApplicationRecord
-end
