@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_16_191704) do
+ActiveRecord::Schema.define(version: 2023_08_16_192348) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2023_08_16_191704) do
     t.index ["product_id"], name: "index_product_variation_counts_on_product_id"
     t.index ["variation_style1_id"], name: "index_product_variation_counts_on_variation_style1_id"
     t.index ["variation_style2_id"], name: "index_product_variation_counts_on_variation_style2_id"
+  end
+
+  create_table "purchase_orders", force: :cascade do |t|
+    t.datetime "order_date"
+    t.datetime "expected_delivery_date"
+    t.integer "vendor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vendor_id"], name: "index_purchase_orders_on_vendor_id"
   end
 
   create_table "sub_catagories", force: :cascade do |t|
@@ -67,6 +76,7 @@ ActiveRecord::Schema.define(version: 2023_08_16_191704) do
   add_foreign_key "product_variation_counts", "products"
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style1_id"
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style2_id"
+  add_foreign_key "purchase_orders", "vendors"
   add_foreign_key "sub_catagories", "catagories"
   add_foreign_key "variation_styles", "variation_types"
   add_foreign_key "variation_types", "sub_catagories"
