@@ -27,16 +27,16 @@ ActiveRecord::Schema.define(version: 2023_08_16_193956) do
     t.index ["product_id"], name: "index_product_prices_on_product_id"
   end
 
-  create_table "product_variation_counts", force: :cascade do |t|
+  create_table "product_variation_details", force: :cascade do |t|
     t.integer "count"
     t.integer "variation_style1_id"
     t.integer "variation_style2_id"
     t.integer "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_product_variation_counts_on_product_id"
-    t.index ["variation_style1_id"], name: "index_product_variation_counts_on_variation_style1_id"
-    t.index ["variation_style2_id"], name: "index_product_variation_counts_on_variation_style2_id"
+    t.index ["product_id"], name: "index_product_variation_details_on_product_id"
+    t.index ["variation_style1_id"], name: "index_product_variation_details_on_variation_style1_id"
+    t.index ["variation_style2_id"], name: "index_product_variation_details_on_variation_style2_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -104,9 +104,9 @@ ActiveRecord::Schema.define(version: 2023_08_16_193956) do
   end
 
   add_foreign_key "product_prices", "products"
-  add_foreign_key "product_variation_counts", "products"
-  add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style1_id"
-  add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style2_id"
+  add_foreign_key "product_variation_details", "products"
+  add_foreign_key "product_variation_details", "variation_styles", column: "variation_style1_id"
+  add_foreign_key "product_variation_details", "variation_styles", column: "variation_style2_id"
   add_foreign_key "products", "sub_catagories"
   add_foreign_key "purchase_orders", "vendors"
   add_foreign_key "purchase_orders_products", "products", column: "products_id"

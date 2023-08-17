@@ -1,6 +1,6 @@
 class CreateProductVariationCounts < ActiveRecord::Migration[6.1]
   def change
-    create_table :product_variation_counts do |t|
+    create_table :product_variation_details do |t|
       t.integer :count
 
       t.references :variation_style1, foreign_key: {to_table: :variation_styles}
