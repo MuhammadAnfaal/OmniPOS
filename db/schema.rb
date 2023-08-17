@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2023_08_16_193956) do
     t.datetime "order_date"
     t.datetime "expected_delivery_date"
     t.integer "vendor_id", null: false
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["vendor_id"], name: "index_purchase_orders_on_vendor_id"
