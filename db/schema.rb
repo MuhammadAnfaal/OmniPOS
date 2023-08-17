@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 2023_08_16_193956) do
     t.string "name"
     t.integer "quantity_in_stock"
     t.text "description"
+    t.integer "sub_catagory_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["sub_catagory_id"], name: "index_products_on_sub_catagory_id"
   end
 
   create_table "purchase_orders", force: :cascade do |t|
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 2023_08_16_193956) do
   add_foreign_key "product_variation_counts", "products"
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style1_id"
   add_foreign_key "product_variation_counts", "variation_styles", column: "variation_style2_id"
+  add_foreign_key "products", "sub_catagories"
   add_foreign_key "purchase_orders", "vendors"
   add_foreign_key "purchase_orders_products", "products", column: "products_id"
   add_foreign_key "purchase_orders_products", "purchase_orders", column: "purchase_orders_id"
